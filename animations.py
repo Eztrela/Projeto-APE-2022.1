@@ -2,7 +2,7 @@ import time
 import sys
 
 
-def loading():
+def loading(intervalo):
     print("Loading:")
 
 
@@ -10,7 +10,7 @@ def loading():
     animation = ["[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
 
     for i in range(len(animation)):
-        time.sleep(0.2)
+        time.sleep(intervalo)
         sys.stdout.write("\r" + animation[i % len(animation)])
         sys.stdout.flush()
 
