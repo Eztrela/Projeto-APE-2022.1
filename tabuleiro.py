@@ -42,7 +42,7 @@ def mostra_tabuleiro(tab):
 
 def preenche_tabuleiro(tab, num_navios):
 
-   #Preenchendo o tabuleiro de maneira aleatória com os navios indicados pela letra 'N', sempre verificando se já existem navios ao redor da posição a ser preeenchida
+   #Preenchendo o tabuleiro de maneira aleatória com os navios indicados pelo emoji 🚢, sempre verificando se já existem navios ao redor da posição a ser preeenchida
 
     cont = 0
     while cont < num_navios:
@@ -50,17 +50,17 @@ def preenche_tabuleiro(tab, num_navios):
         col = randint(1, 10)
         if lin != 10 and col != 10:
             if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin-1][col+1] == '.' and tab[lin][col-1] == '.' and tab[lin][col+1] == '.' and tab[lin+1][col-1] == '.' and tab[lin+1][col] == '.' and tab[lin+1][col+1] == '.':
-                tab[lin][col] = 'N'
+                tab[lin][col] = '🚢'
                 cont += 1
         elif lin != 10 and col == 10:
             if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin][col-1] == '.' and tab[lin+1][col-1] == '.' and tab[lin+1][col] == '.':
-                tab[lin][col] = 'N'
+                tab[lin][col] = '🚢'
                 cont += 1
         elif lin == 10 and col != 10:
             if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin-1][col+1] == '.' and tab[lin][col-1] == '.' and tab[lin][col+1] == '.':
-                tab[lin][col] = 'N'
+                tab[lin][col] = '🚢'
                 cont += 1
         else:
             if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin][col-1] == '.':
-                tab[lin][col] = 'N'
+                tab[lin][col] = '🚢'
                 cont += 1
