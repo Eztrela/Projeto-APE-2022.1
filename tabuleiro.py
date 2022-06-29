@@ -64,3 +64,12 @@ def preenche_tabuleiro(tab, num_navios):
             if tab[lin-1][col-1] != 'N' and tab[lin-1][col] != 'N' and tab[lin][col-1] != 'N':
                 tab[lin][col] = 'N'
                 cont += 1
+
+
+def transforma_linha(lin):
+    letras = ['A','B','C','D','E','F','G','H','I','J']
+    for i in range(10):
+        if letras[i] == lin:
+                lin = i + 1
+        
+    return lin
