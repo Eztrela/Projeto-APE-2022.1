@@ -1,9 +1,10 @@
-import os, animations, tabuleiro
+import os, time, tabuleiro, animations, funcionalidades
 
 
 def imprime_menu_principal():
-    animations.loading(0.1)
-    os.system('clear')
+    
+    loading()
+    
     print(f'Escolha entre as opções a seguir:\n')
     print(f'Novo Jogo       -> 1')
     print(f'Encerrar        -> 2')
@@ -11,12 +12,15 @@ def imprime_menu_principal():
     os.system('clear')
     return opcao
 
+
 def jogada(jogador, tab_oponente):
     print(f'\nVez de {jogador}.\n')
     while True:
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         col = int(input('\nEscolha a coluna de ataque (1-10): '))
-        animations.loading(0.1)
+        
+        loading()
+
         print(f'\n{jogador} atacou a posição {lin}{col}.\n')
         lin = tabuleiro.transforma_linha(lin)
         if tab_oponente[lin][col] == 'N':
@@ -29,3 +33,107 @@ def jogada(jogador, tab_oponente):
             print('ÁGUA!\n')
             tabuleiro.mostra_tabuleiro(tab_oponente)
             break
+
+
+def carrega_menu():
+
+    while(True):
+
+        opcao = funcionalidades.imprime_menu_principal()
+
+        if(opcao == 1):
+            inicia_jogo()
+
+        elif(opcao == 2):
+            encerra_jogo()
+            break
+
+        else:
+            print(f'A opção {opcao} é invalida digite novamente')
+            time.sleep(1.5)
+            os.system('clear')
+            continue
+
+
+def inicia_jogo():
+
+    loading()
+
+    print(f'Início do jogo \n')
+
+    nome_jogador1 = input(f'Nome do jogador 1: ')
+    nome_jogador2 = input(f'Nome do jogador 2: ')
+    tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
+    tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
+
+    tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+    tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+    time.sleep(20)
+
+    tam_frota = int(input(f'De quantos Navios será formada a frota de cada jogador? '))
+
+    tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
+    tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
+
+    tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+    tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+
+    time.sleep(20)
+
+    loading()
+
+    jogadas(nome_jogador1,nome_jogador2,tabuleiro_jogador1,tabuleiro_jogador2)
+
+def encerra_jogo():
+    
+    loading()
+
+    print(f'ESPERO QUE TENHA SE DIVERTIDO!!!!!\n ATÉ A PRÓXIMA!!!!!')
+    time.sleep(4)
+
+def loading():
+    os.system("clear")
+    animations.loading(0.1)
+    os.system('clear')
+
+def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
+
+    while(True):
+
+        print('Hora de jogar!')
+
+        funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
+
+        if(verifica_vitoria(tabuleiro_jogador2)):
+            
+            print(f'{nome_jogador1} Afundou todos os Navios de {nome_jogador2}')
+            print(f'{nome_jogador1} GANHOU O JOGO')
+            
+            print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
+            tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+            
+            print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
+            tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+            break
+
+        time.sleep(4)
+
+        funcionalidades.jogada(nome_jogador2, tabuleiro_jogador1)
+
+        if(verifica_vitoria(tabuleiro_jogador1)):
+            
+            print(f'{nome_jogador2} Afundou todos os Navios de {nome_jogador1}')
+            print(f'{nome_jogador2} GANHOU O JOGO')
+            
+            print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
+            tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+            
+            print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
+            tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+            break
+
+def verifica_vitoria(tabuleiro):
+    for linhas in tabuleiro:
+        if ('N' in linhas):
+            return False
+    return True
