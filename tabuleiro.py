@@ -49,18 +49,18 @@ def preenche_tabuleiro(tab, num_navios):
         lin = randint(1, 10)
         col = randint(1, 10)
         if lin != 10 and col != 10:
-            if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin-1][col+1] == '.' and tab[lin][col-1] == '.' and tab[lin][col+1] == '.' and tab[lin+1][col-1] == '.' and tab[lin+1][col] == '.' and tab[lin+1][col+1] == '.':
+            if tab[lin-1][col-1] != '🚢' and tab[lin-1][col] != 'N' and tab[lin-1][col+1] != 'N' and tab[lin][col-1] != 'N' and tab[lin][col+1] != 'N' and tab[lin+1][col-1] != 'N' and tab[lin+1][col] != 'N' and tab[lin+1][col+1] != 'N':
                 tab[lin][col] = '🚢'
                 cont += 1
         elif lin != 10 and col == 10:
-            if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin][col-1] == '.' and tab[lin+1][col-1] == '.' and tab[lin+1][col] == '.':
+            if tab[lin-1][col-1] != 'N' and tab[lin-1][col] != 'N' and tab[lin][col-1] != 'N' and tab[lin+1][col-1] != 'N' and tab[lin+1][col] != 'N':
                 tab[lin][col] = '🚢'
                 cont += 1
         elif lin == 10 and col != 10:
-            if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin-1][col+1] == '.' and tab[lin][col-1] == '.' and tab[lin][col+1] == '.':
+            if tab[lin-1][col-1] != 'N' and tab[lin-1][col] != 'N' and tab[lin-1][col+1] != 'N' and tab[lin][col-1] != 'N' and tab[lin][col+1] != 'N':
                 tab[lin][col] = '🚢'
                 cont += 1
         else:
-            if tab[lin-1][col-1] == '.' and tab[lin-1][col] == '.' and tab[lin][col-1] == '.':
+            if tab[lin-1][col-1] != 'N' and tab[lin-1][col] != 'N' and tab[lin][col-1] != 'N':
                 tab[lin][col] = '🚢'
                 cont += 1
