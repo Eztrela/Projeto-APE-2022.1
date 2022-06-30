@@ -9,7 +9,7 @@ def imprime_menu_principal():
     print(f'Novo Jogo       -> 1')
     print(f'Encerrar        -> 2')
     opcao = int(input(f'\nDigite opção desejada: '))
-    os.system('clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
     return opcao
 
 
@@ -51,7 +51,7 @@ def carrega_menu():
         else:
             print(f'A opção {opcao} é invalida digite novamente')
             time.sleep(1.5)
-            os.system('clear')
+            os.system('cls' if os.name == 'nt' else 'clear')
             continue
 
 
@@ -83,9 +83,9 @@ def encerra_jogo():
     time.sleep(4)
 
 def loading():
-    os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear')
     animations.loading(0.1)
-    os.system('clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
