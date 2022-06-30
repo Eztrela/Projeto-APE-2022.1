@@ -124,6 +124,8 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
             time.sleep(8)
             break
+        
+        time.sleep(4)
 
 def verifica_vitoria(tabuleiro):
     for linhas in tabuleiro:
