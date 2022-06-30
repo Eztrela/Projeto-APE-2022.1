@@ -14,13 +14,22 @@ def imprime_menu_principal():
 
 
 def jogada(jogador, tab_oponente):
-    print(f'\nVez de {jogador}.\n')
+    
     while True:
         if(verifica_vitoria(tab_oponente)):
             break
+        print(f'\nVez de {jogador}.\n')
+
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         col = int(input('\nEscolha a coluna de ataque (1-10): '))
-
+        
+        if(lin not in 'ABCDEFGHIJ' or col not in [1,2,3,4,5,6,7,8,9,10]):
+            print(f'\nValores Invalidos por favor digite novamente!!!')
+            time.sleep(3)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+            
+        
         print(f'\n{jogador} atacou a posição {lin}{col}.\n')
         lin = tabuleiro.transforma_linha(lin)
         if tab_oponente[lin][col] == 'N':
@@ -46,6 +55,7 @@ def jogada(jogador, tab_oponente):
 
 def carrega_menu():
 
+    os.system('cls' if os.name == 'nt' else 'clear')
     print('''
    ######              ##               ###     ###                        ##   ##                              ### #
     ##  ##             ##                ##      ##                        ###  ##                               ## #
