@@ -16,10 +16,10 @@ def imprime_menu_principal():
 def jogada(jogador, tab_oponente):
     print(f'\nVez de {jogador}.\n')
     while True:
+        if(verifica_vitoria(tab_oponente)):
+            break
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         col = int(input('\nEscolha a coluna de ataque (1-10): '))
-        
-        loading()
 
         print(f'\n{jogador} atacou a posição {lin}{col}.\n')
         lin = tabuleiro.transforma_linha(lin)
@@ -105,6 +105,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             
             print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+            time.sleep(8)
             break
 
         time.sleep(4)
@@ -121,6 +122,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             
             print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+            time.sleep(8)
             break
 
 def verifica_vitoria(tabuleiro):
