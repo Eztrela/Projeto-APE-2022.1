@@ -28,6 +28,18 @@ def cria_tabuleiro():
 
 
 def mostra_tabuleiro(tab):
+    celula_tab = '.'
+    for i in range(11):
+            for j in range(11):
+                if i == 0 and j == 0:
+                    print(f'{tab[i][j]:1}', end='')
+                elif tab[i][j] == 'N':
+                    print(f'{celula_tab:4}', end='')
+                else:
+                    print(f'{tab[i][j]:4}', end='')
+            print()
+
+def mostra_gabarito(tab):
 
     #Exibindo cada elemento do tabuleiro de maneira formatada
 
