@@ -27,19 +27,36 @@ def jogada(jogador, tab_oponente):
             tab_oponente[lin][col] = 'F'
             print('FOGO!\n')
             tabuleiro.mostra_tabuleiro(tab_oponente)
-            time.sleep(4)
+            time.sleep(3)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+        elif(tab_oponente[lin][col] == 'F' or tab_oponente[lin][col] == 'A'):
+            print('Essa posição já foi atacada, Escolha outra')
+            time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
         else:
             tab_oponente[lin][col] = 'A'
             print('ÁGUA!\n')
             tabuleiro.mostra_tabuleiro(tab_oponente)
-            time.sleep(4)
+            time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             break
 
 
 def carrega_menu():
+
+    print('''
+#  ######              ##               ###     ###                        ##   ##                              ### #
+#   ##  ##             ##                ##      ##                        ###  ##                               ## #
+#   ##  ##   ####     #####    ####      ##      ##       ####             #### ##   ####    ##  ##    ####      ## #
+#   #####       ##     ##         ##     ##      #####       ##            ## ####      ##   ##  ##       ##     ## #
+#   ##  ##   #####     ##      #####     ##      ##  ##   #####            ##  ###   #####   ##  ##    #####     ## #
+#   ##  ##  ##  ##     ## ##  ##  ##     ##      ##  ##  ##  ##            ##   ##  ##  ##    ####    ##  ##     ## #
+#  ######    #####      ###    #####    ####    ###  ##   #####            ##   ##   #####     ##      #####    #### #
+
+''')
+    time.sleep(5)
 
     while(True):
 
@@ -54,7 +71,7 @@ def carrega_menu():
 
         else:
             print(f'A opção {opcao} é invalida digite novamente')
-            time.sleep(1.5)
+            time.sleep(2)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
 
@@ -96,7 +113,7 @@ def encerra_jogo():
     loading_clear()
 
     print(f'ESPERO QUE TENHA SE DIVERTIDO!!!!!\n ATÉ A PRÓXIMA!!!!!')
-    time.sleep(4)
+    time.sleep(3)
 
 def loading_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -123,7 +140,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             
             print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
-            time.sleep(8)
+            time.sleep(5)
             loading_clear()
             break
 
@@ -142,7 +159,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             
             print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
-            time.sleep(8)
+            time.sleep(5)
             loading_clear()
             break
 
