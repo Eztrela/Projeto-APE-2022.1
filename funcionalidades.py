@@ -66,19 +66,10 @@ def inicia_jogo():
     tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
     tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
 
-    tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
-    tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
-    time.sleep(20)
-
     tam_frota = int(input(f'De quantos Navios será formada a frota de cada jogador? '))
 
     tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
     tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
-
-    tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
-    tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
-
-    time.sleep(20)
 
     loading()
 

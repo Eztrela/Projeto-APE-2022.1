@@ -64,6 +64,7 @@ def preenche_tabuleiro(tab, num_navios):
             if tab[lin-1][col-1] != 'N' and tab[lin-1][col] != 'N' and tab[lin][col-1] != 'N':
                 tab[lin][col] = 'N'
                 cont += 1
+    return tab
 
 
 def transforma_linha(lin):
