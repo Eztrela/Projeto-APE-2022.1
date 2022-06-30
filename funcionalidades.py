@@ -3,7 +3,7 @@ import os, time, tabuleiro, animations, funcionalidades
 
 def imprime_menu_principal():
     
-    loading()
+    loading_clear()
     
     print(f'Escolha entre as opções a seguir:\n')
     print(f'Novo Jogo       -> 1')
@@ -27,11 +27,15 @@ def jogada(jogador, tab_oponente):
             tab_oponente[lin][col] = 'F'
             print('FOGO!\n')
             tabuleiro.mostra_tabuleiro(tab_oponente)
+            time.sleep(4)
+            os.system('cls' if os.name == 'nt' else 'clear')
             continue
         else:
             tab_oponente[lin][col] = 'A'
             print('ÁGUA!\n')
             tabuleiro.mostra_tabuleiro(tab_oponente)
+            time.sleep(4)
+            os.system('cls' if os.name == 'nt' else 'clear')
             break
 
 
@@ -57,7 +61,7 @@ def carrega_menu():
 
 def inicia_jogo():
 
-    loading()
+    loading_clear()
 
     print(f'Início do jogo \n')
 
@@ -70,19 +74,21 @@ def inicia_jogo():
 
     tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
     tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
+    gabarito_jogador1 = tabuleiro_jogador1
+    gabarito_jogador2 = tabuleiro_jogador2
 
-    loading()
+    loading_clear()
 
     jogadas(nome_jogador1,nome_jogador2,tabuleiro_jogador1,tabuleiro_jogador2)
 
 def encerra_jogo():
     
-    loading()
+    loading_clear()
 
     print(f'ESPERO QUE TENHA SE DIVERTIDO!!!!!\n ATÉ A PRÓXIMA!!!!!')
     time.sleep(4)
 
-def loading():
+def loading_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
     animations.loading(0.1)
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -94,6 +100,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
         print('Hora de jogar!')
 
         funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
+        os.system('cls' if os.name == 'nt' else 'clear')
 
         if(verifica_vitoria(tabuleiro_jogador2)):
             
@@ -106,11 +113,13 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
             time.sleep(8)
+            loading_clear()
             break
 
-        time.sleep(4)
+        
 
         funcionalidades.jogada(nome_jogador2, tabuleiro_jogador1)
+        
 
         if(verifica_vitoria(tabuleiro_jogador1)):
             
@@ -123,9 +132,9 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
             time.sleep(8)
+            loading_clear()
             break
-        
-        time.sleep(4)
+
 
 def verifica_vitoria(tabuleiro):
     for linhas in tabuleiro:
