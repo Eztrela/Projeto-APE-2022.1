@@ -67,6 +67,16 @@ def inicia_jogo():
 
     nome_jogador1 = input(f'Nome do jogador 1: ')
     nome_jogador2 = input(f'Nome do jogador 2: ')
+    aux = ''
+    
+    jogador_sorteado = funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
+    if(jogador_sorteado == nome_jogador2):
+        aux = nome_jogador1
+        nome_jogador1 = jogador_sorteado
+        nome_jogador2 = aux
+    
+
+
     tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
     tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
 
@@ -99,7 +109,6 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
         print('Hora de jogar!')
 
-        funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
 
         funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -151,6 +160,7 @@ def sorteio_jogador(jog1, jog2):
     animations.loading(0.1)
     lista = [jog1,jog2]
     jogador_sorteado = random.choice(lista)
-    print(f'O jogador sorteado foi {jogador_sorteado}.')
-    time.sleep(1.5)
+    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
+    time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
+    return jogador_sorteado

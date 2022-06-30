@@ -1,5 +1,3 @@
-import os, time, tabuleiro, animations, funcionalidades
+from funcionalidades import carrega_menu
 
-funcionalidades.carrega_menu()
-    
-
+carrega_menu()
