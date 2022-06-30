@@ -1,4 +1,4 @@
-import os, time, tabuleiro, animations, funcionalidades
+import os, time, tabuleiro, animations, funcionalidades, random
 
 
 def imprime_menu_principal():
@@ -93,6 +93,8 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
         print('Hora de jogar!')
 
+        funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
+
         funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
 
         if(verifica_vitoria(tabuleiro_jogador2)):
@@ -127,8 +129,19 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
         
         time.sleep(4)
 
+
 def verifica_vitoria(tabuleiro):
     for linhas in tabuleiro:
         if ('N' in linhas):
             return False
     return True
+
+
+def sorteio_jogador(jog1, jog2):
+    print('\nPrimeiro, vamos sortear quem começa jogando.\n')
+    animations.loading(0.1)
+    lista = [jog1,jog2]
+    jogador_sorteado = random.choice(lista)
+    print(f'O jogador sorteado foi {jogador_sorteado}.')
+    time.sleep(1.5)
+    os.system('cls' if os.name == 'nt' else 'clear')
