@@ -31,7 +31,7 @@ def jogada(jogador, tab_oponente):
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
         elif(tab_oponente[lin][col] == 'F' or tab_oponente[lin][col] == 'A'):
-            print('Essa posição já foi atacada, Escolha outra')
+            print('Essa posição já foi atacada. Por favor, escolha outra.')
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
