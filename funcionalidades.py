@@ -1,4 +1,4 @@
-import os, time, tabuleiro, animations, funcionalidades, random
+import os, time, tabuleiro, animations, funcionalidades, random, re
 
 
 def imprime_menu_principal():
@@ -21,9 +21,20 @@ def jogada(jogador, tab_oponente):
         print(f'\nVez de {jogador}.\n')
 
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
-        col = int(input('\nEscolha a coluna de ataque (1-10): '))
         
-        if(lin not in 'ABCDEFGHIJ' or col not in [1,2,3,4,5,6,7,8,9,10]):
+        
+        col = input('\nEscolha a coluna de ataque (1-10): ')
+        if(re.match('[1-10]{1}$', col)):
+            col = int(col)
+        else:
+            print(f'\nValores Invalidos por favor digite novamente!!!')
+            time.sleep(3)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+
+        
+        
+        if(not re.match('[abcdefghijABCDEFGHIJ]{1}$', lin)):
             print(f'\nValores Invalidos por favor digite novamente!!!')
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
