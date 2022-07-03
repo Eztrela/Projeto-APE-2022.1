@@ -7,6 +7,8 @@ def imprime_menu_principal():
 
         Recebe do usuário os inteiros "1" ou "2"
         (1 para começar um novo jogo e 2 para encerrar o programa)
+        e retorna a opção escolhida pelo usuário
+
     """    
     loading_clear()
     
@@ -39,13 +41,6 @@ def jogada(jogador, tab_oponente):
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
-        # try:
-        #     col = int(col)
-        # except:
-        #     print(f'\nValores Invalidos por favor digite novamente!!!')
-        #     time.sleep(3)
-        #     os.system('cls' if os.name == 'nt' else 'clear')
-        #     continue
 
 
         
@@ -203,9 +198,20 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
 
 def verifica_vitoria(tabuleiro):
+    """
+        Verifica se ainda existem navios a serem localizados no tabuleiro
+
+        Retorna True caso todos os navios tenham sido apontados pelo oponente
+    """
+
+    # Varre o tabuleiro
     for linhas in tabuleiro:
+
+        # Se achar "N" (ou seja, um navio não encontrado pelo adversário), o jogo deve continuar
         if ('N' in linhas):
             return False
+    
+    # Se o for não encontrar um navio, a função retorna true, isto é, um jogador venceu a partida
     return True
 
 
