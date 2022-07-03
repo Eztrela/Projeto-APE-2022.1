@@ -20,6 +20,7 @@ def imprime_menu_principal():
     return opcao
 
 
+
 def jogada(jogador, tab_oponente):
     
     while True:
@@ -75,6 +76,7 @@ def jogada(jogador, tab_oponente):
             break
 
 
+
 def carrega_menu():
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -106,6 +108,7 @@ def carrega_menu():
             time.sleep(2)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
+
 
 
 def inicia_jogo():
@@ -140,6 +143,8 @@ def inicia_jogo():
 
     jogadas(nome_jogador1,nome_jogador2,tabuleiro_jogador1,tabuleiro_jogador2)
 
+
+
 def encerra_jogo():
     
     loading_clear()
@@ -147,10 +152,14 @@ def encerra_jogo():
     print(f'ESPERO QUE TENHA SE DIVERTIDO!!!!!\n ATÉ A PRÓXIMA!!!!!')
     time.sleep(3)
 
+
+
 def loading_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
     animations.loading(0.1)
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
 
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
@@ -215,12 +224,26 @@ def verifica_vitoria(tabuleiro):
     return True
 
 
+
 def sorteio_jogador(jog1, jog2):
+    """
+        Função para sortear o jogador que irá iniciar a partida
+
+        Recebe como parâmetro os nomes dos jogadores
+        Retorna o jogador sorteado para começar
+    """
+
     print('\nPrimeiro, vamos sortear quem começa jogando.\n')
-    animations.loading(0.1)
+
+    
+    animations.loading(0.1) # Exibe a animação em tela
+
+    # Coloca os jogadores numa lista e sorteia um dos dois, atribuindo o resultado numa variável
     lista = [jog1,jog2]
     jogador_sorteado = random.choice(lista)
+
     print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
     time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
-    return jogador_sorteado
+
+    return jogador_sorteado # Retorna o jogador sorteado
