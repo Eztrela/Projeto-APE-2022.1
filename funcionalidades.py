@@ -1,6 +1,12 @@
 import os, time, tabuleiro, animations, funcionalidades, random, re
 
 
+def loading_clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    animations.loading(0.1)
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def imprime_menu_principal():
     """
         Função para mostrar o menu inicial em tela.
@@ -19,6 +25,109 @@ def imprime_menu_principal():
     os.system('cls' if os.name == 'nt' else 'clear')
     return opcao
 
+
+def carrega_menu():
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print('''
+   ######              ##               ###     ###                        ##   ##                              ### 
+    ##  ##             ##                ##      ##                        ###  ##                               ## 
+    ##  ##   ####     #####    ####      ##      ##       ####             #### ##   ####    ##  ##    ####      ## 
+    #####       ##     ##         ##     ##      #####       ##            ## ####      ##   ##  ##       ##     ## 
+    ##  ##   #####     ##      #####     ##      ##  ##   #####            ##  ###   #####   ##  ##    #####     ## 
+    ##  ##  ##  ##     ## ##  ##  ##     ##      ##  ##  ##  ##            ##   ##  ##  ##    ####    ##  ##     ## 
+   ######    #####      ###    #####    ####    ###  ##   #####            ##   ##   #####     ##      #####    #### 
+
+''')
+    time.sleep(5)
+
+    while(True):
+
+        opcao = funcionalidades.imprime_menu_principal()
+
+        if(opcao == 1):
+            inicia_jogo()
+
+        elif(opcao == 2):
+            encerra_jogo()
+            break
+
+        else:
+            print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
+            time.sleep(2)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+
+
+def inicia_jogo():
+
+    loading_clear()
+
+    print(f'Início do jogo \n')
+
+    nome_jogador1 = input(f'Nome do jogador 1: ')
+    nome_jogador2 = input(f'Nome do jogador 2: ')
+    aux = ''
+    
+    jogador_sorteado = funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
+    if(jogador_sorteado == nome_jogador2):
+        aux = nome_jogador1
+        nome_jogador1 = jogador_sorteado
+        nome_jogador2 = aux
+    
+
+
+    tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
+    tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
+
+    while True:
+        tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
+        if tam_frota <= 10:
+            break
+        else:
+            print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+            continue
+
+    tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
+    tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
+    gabarito_jogador1 = tabuleiro_jogador1
+    gabarito_jogador2 = tabuleiro_jogador2
+
+    loading_clear()
+
+    jogadas(nome_jogador1,nome_jogador2,tabuleiro_jogador1,tabuleiro_jogador2)
+
+
+def encerra_jogo():
+    
+    loading_clear()
+
+    print(f'ESPERO QUE TENHA SE DIVERTIDO!\nATÉ A PRÓXIMA!')
+    time.sleep(3)
+
+
+def sorteio_jogador(jog1, jog2):
+    """
+        Função para sortear o jogador que irá iniciar a partida
+
+        Recebe como parâmetro os nomes dos jogadores
+        Retorna o jogador sorteado para começar
+    """
+
+    print('\nPrimeiro, vamos sortear quem começa jogando.\n')
+
+    
+    animations.loading(0.1) # Exibe a animação em tela
+
+    # Coloca os jogadores numa lista e sorteia um dos dois, atribuindo o resultado numa variável
+    lista = [jog1,jog2]
+    jogador_sorteado = random.choice(lista)
+
+    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
+    time.sleep(3)
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    return jogador_sorteado # Retorna o jogador sorteado
 
 
 def jogada(jogador, tab_oponente):
@@ -83,97 +192,6 @@ def jogada(jogador, tab_oponente):
                 break
 
 
-
-def carrega_menu():
-
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print('''
-   ######              ##               ###     ###                        ##   ##                              ### 
-    ##  ##             ##                ##      ##                        ###  ##                               ## 
-    ##  ##   ####     #####    ####      ##      ##       ####             #### ##   ####    ##  ##    ####      ## 
-    #####       ##     ##         ##     ##      #####       ##            ## ####      ##   ##  ##       ##     ## 
-    ##  ##   #####     ##      #####     ##      ##  ##   #####            ##  ###   #####   ##  ##    #####     ## 
-    ##  ##  ##  ##     ## ##  ##  ##     ##      ##  ##  ##  ##            ##   ##  ##  ##    ####    ##  ##     ## 
-   ######    #####      ###    #####    ####    ###  ##   #####            ##   ##   #####     ##      #####    #### 
-
-''')
-    time.sleep(5)
-
-    while(True):
-
-        opcao = funcionalidades.imprime_menu_principal()
-
-        if(opcao == 1):
-            inicia_jogo()
-
-        elif(opcao == 2):
-            encerra_jogo()
-            break
-
-        else:
-            print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
-            time.sleep(2)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            continue
-
-
-
-def inicia_jogo():
-
-    loading_clear()
-
-    print(f'Início do jogo \n')
-
-    nome_jogador1 = input(f'Nome do jogador 1: ')
-    nome_jogador2 = input(f'Nome do jogador 2: ')
-    aux = ''
-    
-    jogador_sorteado = funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
-    if(jogador_sorteado == nome_jogador2):
-        aux = nome_jogador1
-        nome_jogador1 = jogador_sorteado
-        nome_jogador2 = aux
-    
-
-
-    tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
-    tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
-
-    while True:
-        tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
-        if tam_frota <= 10:
-            break
-        else:
-            print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
-            continue
-
-    tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
-    tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
-    gabarito_jogador1 = tabuleiro_jogador1
-    gabarito_jogador2 = tabuleiro_jogador2
-
-    loading_clear()
-
-    jogadas(nome_jogador1,nome_jogador2,tabuleiro_jogador1,tabuleiro_jogador2)
-
-
-
-def encerra_jogo():
-    
-    loading_clear()
-
-    print(f'ESPERO QUE TENHA SE DIVERTIDO!\n ATÉ A PRÓXIMA!')
-    time.sleep(3)
-
-
-
-def loading_clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    animations.loading(0.1)
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
     print('Hora de jogar!')
@@ -185,37 +203,35 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
         if(verifica_vitoria(tabuleiro_jogador2)):
             
-            print(f'{nome_jogador1} afundou todos os navios de {nome_jogador2}.')
-            print(f'{nome_jogador1} GANHOU O JOGO.')
+            print(f'EITA! {nome_jogador1} afundou todos os navios de {nome_jogador2}.')
+            print(f'\nPARABÉNS, {nome_jogador1}! VOCÊ GANHOU O JOGO.')
             
-            print(f'Tabuleiro {nome_jogador1} após o término do jogo:\n')
-            tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+            print(f'\nTabuleiro de {nome_jogador1} após o término do jogo:\n')
+            tabuleiro.mostra_gabarito(tabuleiro_jogador1)
             
-            print(f'Tabuleiro {nome_jogador2} após o término do jogo:\n')
-            tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+            print(f'\nTabuleiro de {nome_jogador2} após o término do jogo:\n')
+            tabuleiro.mostra_gabarito(tabuleiro_jogador2)
             time.sleep(5)
-            loading_clear()
+            os.system('cls' if os.name == 'nt' else 'clear')
             break
 
-        
 
         funcionalidades.jogada(nome_jogador2, tabuleiro_jogador1)
         
 
         if(verifica_vitoria(tabuleiro_jogador1)):
             
-            print(f'{nome_jogador2} afundou todos os navios de {nome_jogador1}.')
-            print(f'{nome_jogador2} GANHOU O JOGO.')
+            print(f'EITA! {nome_jogador2} afundou todos os navios de {nome_jogador1}.')
+            print(f'\nPARABÉNS, {nome_jogador2}! VOCÊ GANHOU O JOGO.')
             
-            print(f'Tabuleiro {nome_jogador2} após o término do jogo:\n')
-            tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
+            print(f'\nTabuleiro de {nome_jogador2} após o término do jogo:\n')
+            tabuleiro.mostra_gabarito(tabuleiro_jogador2)
             
-            print(f'Tabuleiro {nome_jogador1} após o término do jogo:\n')
-            tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
+            print(f'\nTabuleiro de {nome_jogador1} após o término do jogo:\n')
+            tabuleiro.mostra_gabarito(tabuleiro_jogador1)
             time.sleep(5)
-            loading_clear()
+            os.system('cls' if os.name == 'nt' else 'clear')
             break
-
 
 
 def verifica_vitoria(tabuleiro):
@@ -234,28 +250,3 @@ def verifica_vitoria(tabuleiro):
     
     # Se o for não encontrar um navio, a função retorna true, isto é, um jogador venceu a partida
     return True
-
-
-
-def sorteio_jogador(jog1, jog2):
-    """
-        Função para sortear o jogador que irá iniciar a partida
-
-        Recebe como parâmetro os nomes dos jogadores
-        Retorna o jogador sorteado para começar
-    """
-
-    print('\nPrimeiro, vamos sortear quem começa jogando.\n')
-
-    
-    animations.loading(0.1) # Exibe a animação em tela
-
-    # Coloca os jogadores numa lista e sorteia um dos dois, atribuindo o resultado numa variável
-    lista = [jog1,jog2]
-    jogador_sorteado = random.choice(lista)
-
-    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
-    time.sleep(3)
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    return jogador_sorteado # Retorna o jogador sorteado
