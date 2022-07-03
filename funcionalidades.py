@@ -28,6 +28,8 @@ def jogada(jogador, tab_oponente):
             break
         print(f'\nVez de {jogador}.\n')
 
+        print('(Caso queira visualizar o gabarito do tabuleiro adversário, digite a posição 0x0.)\n')
+
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         
         #col in ['1','2','3','4','5','6','7','8','9', '10']
@@ -35,45 +37,50 @@ def jogada(jogador, tab_oponente):
         
         col = input('\nEscolha a coluna de ataque (1-10): ')  
 
-        if(col in ['1','2','3','4','5','6','7','8','9','10']): 
+        if(col in ['0','1','2','3','4','5','6','7','8','9','10']): 
             col = int(col)
         else:
-            print(f'\nValores Invalidos por favor digite novamente!!!')
+            print(f'\nValores inválidos. Por favor, digite novamente.')
+            time.sleep(3)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+        
+        if(not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin)):
+            print(f'\nValores inválidos. Por favor, digite novamente.')
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
 
+        print()
+        animations.loading(0.05)
 
-        
-        
-        if(not re.match('[abcdefghijABCDEFGHIJ]{1}$', lin)):
-            print(f'\nValores Invalidos por favor digite novamente!!!')
+        if(lin == '0' and col == 0):
+            print('Gabarito do tabuleiro adversário:\n')
+            tabuleiro.mostra_gabarito(tab_oponente)
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
-            continue
-            
-        
-        print(f'\n{jogador} atacou a posição {lin}{col}.\n')
-        lin = tabuleiro.transforma_linha(lin)
-        if tab_oponente[lin][col] == 'N':
-            tab_oponente[lin][col] = 'F'
-            print('FOGO!\n')
-            tabuleiro.mostra_tabuleiro(tab_oponente)
-            time.sleep(3)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            continue
-        elif(tab_oponente[lin][col] == 'F' or tab_oponente[lin][col] == 'A'):
-            print('Essa posição já foi atacada. Por favor, escolha outra.')
-            time.sleep(3)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            continue
         else:
-            tab_oponente[lin][col] = 'A'
-            print('ÁGUA!\n')
-            tabuleiro.mostra_tabuleiro(tab_oponente)
-            time.sleep(3)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            break
+            print(f'\n{jogador} atacou a posição {lin}{col}.\n')
+            lin = tabuleiro.transforma_linha(lin)
+            if tab_oponente[lin][col] == 'N':
+                tab_oponente[lin][col] = 'F'
+                print('FOGO!\n')
+                tabuleiro.mostra_tabuleiro(tab_oponente)
+                time.sleep(3)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                continue
+            elif(tab_oponente[lin][col] == 'F' or tab_oponente[lin][col] == 'A'):
+                print('Essa posição já foi atacada. Por favor, escolha outra.')
+                time.sleep(3)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                continue
+            else:
+                tab_oponente[lin][col] = 'A'
+                print('ÁGUA!\n')
+                tabuleiro.mostra_tabuleiro(tab_oponente)
+                time.sleep(3)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                break
 
 
 
@@ -81,13 +88,13 @@ def carrega_menu():
 
     os.system('cls' if os.name == 'nt' else 'clear')
     print('''
-   ######              ##               ###     ###                        ##   ##                              ### #
-    ##  ##             ##                ##      ##                        ###  ##                               ## #
-    ##  ##   ####     #####    ####      ##      ##       ####             #### ##   ####    ##  ##    ####      ## #
-    #####       ##     ##         ##     ##      #####       ##            ## ####      ##   ##  ##       ##     ## #
-    ##  ##   #####     ##      #####     ##      ##  ##   #####            ##  ###   #####   ##  ##    #####     ## #
-    ##  ##  ##  ##     ## ##  ##  ##     ##      ##  ##  ##  ##            ##   ##  ##  ##    ####    ##  ##     ## #
-   ######    #####      ###    #####    ####    ###  ##   #####            ##   ##   #####     ##      #####    #### #
+   ######              ##               ###     ###                        ##   ##                              ### 
+    ##  ##             ##                ##      ##                        ###  ##                               ## 
+    ##  ##   ####     #####    ####      ##      ##       ####             #### ##   ####    ##  ##    ####      ## 
+    #####       ##     ##         ##     ##      #####       ##            ## ####      ##   ##  ##       ##     ## 
+    ##  ##   #####     ##      #####     ##      ##  ##   #####            ##  ###   #####   ##  ##    #####     ## 
+    ##  ##  ##  ##     ## ##  ##  ##     ##      ##  ##  ##  ##            ##   ##  ##  ##    ####    ##  ##     ## 
+   ######    #####      ###    #####    ####    ###  ##   #####            ##   ##   #####     ##      #####    #### 
 
 ''')
     time.sleep(5)
@@ -104,7 +111,7 @@ def carrega_menu():
             break
 
         else:
-            print(f'A opção {opcao} é invalida digite novamente')
+            print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
             time.sleep(2)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
@@ -132,7 +139,13 @@ def inicia_jogo():
     tabuleiro_jogador1 = tabuleiro.cria_tabuleiro()
     tabuleiro_jogador2 = tabuleiro.cria_tabuleiro()
 
-    tam_frota = int(input(f'De quantos Navios será formada a frota de cada jogador? '))
+    while True:
+        tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
+        if tam_frota <= 10:
+            break
+        else:
+            print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+            continue
 
     tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
     tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
@@ -149,7 +162,7 @@ def encerra_jogo():
     
     loading_clear()
 
-    print(f'ESPERO QUE TENHA SE DIVERTIDO!!!!!\n ATÉ A PRÓXIMA!!!!!')
+    print(f'ESPERO QUE TENHA SE DIVERTIDO!\n ATÉ A PRÓXIMA!')
     time.sleep(3)
 
 
@@ -163,23 +176,22 @@ def loading_clear():
 
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
+    print('Hora de jogar!')
+
     while(True):
-
-        print('Hora de jogar!')
-
 
         funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
         os.system('cls' if os.name == 'nt' else 'clear')
 
         if(verifica_vitoria(tabuleiro_jogador2)):
             
-            print(f'{nome_jogador1} Afundou todos os Navios de {nome_jogador2}')
-            print(f'{nome_jogador1} GANHOU O JOGO')
+            print(f'{nome_jogador1} afundou todos os navios de {nome_jogador2}.')
+            print(f'{nome_jogador1} GANHOU O JOGO.')
             
-            print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
+            print(f'Tabuleiro {nome_jogador1} após o término do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
             
-            print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
+            print(f'Tabuleiro {nome_jogador2} após o término do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
             time.sleep(5)
             loading_clear()
@@ -192,13 +204,13 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
         if(verifica_vitoria(tabuleiro_jogador1)):
             
-            print(f'{nome_jogador2} Afundou todos os Navios de {nome_jogador1}')
-            print(f'{nome_jogador2} GANHOU O JOGO')
+            print(f'{nome_jogador2} afundou todos os navios de {nome_jogador1}.')
+            print(f'{nome_jogador2} GANHOU O JOGO.')
             
-            print(f'Tabuleiro {nome_jogador2} após termino do jogo:\n')
+            print(f'Tabuleiro {nome_jogador2} após o término do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador2)
             
-            print(f'Tabuleiro {nome_jogador1} após termino do jogo:\n')
+            print(f'Tabuleiro {nome_jogador1} após o término do jogo:\n')
             tabuleiro.mostra_tabuleiro(tabuleiro_jogador1)
             time.sleep(5)
             loading_clear()
