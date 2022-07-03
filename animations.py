@@ -1,5 +1,5 @@
-import time
-import sys
+from time import sleep
+from sys import stdout
 
 
 def loading(intervalo):
@@ -9,9 +9,11 @@ def loading(intervalo):
     #animation = ["10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"]
     animation = ["[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
 
+    
+    # Mostra a animação em tela
     for i in range(len(animation)):
-        time.sleep(intervalo)
-        sys.stdout.write("\r" + animation[i % len(animation)])
-        sys.stdout.flush()
+        sleep(intervalo) # Função importada da lib time para que a animação não seja mostrada toda de uma vez
+        stdout.write("\r" + animation[i % len(animation)])
+        stdout.flush()
 
     print("\n")

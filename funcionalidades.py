@@ -2,7 +2,12 @@ import os, time, tabuleiro, animations, funcionalidades, random, re
 
 
 def imprime_menu_principal():
-    
+    """
+        Função para mostrar o menu inicial em tela.
+
+        Recebe do usuário os inteiros "1" ou "2"
+        (1 para começar um novo jogo e 2 para encerrar o programa)
+    """    
     loading_clear()
     
     print(f'Escolha entre as opções a seguir:\n')
