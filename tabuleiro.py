@@ -84,5 +84,6 @@ def transforma_linha(lin):
     for i in range(10):
         if letras[i] == lin:
                 lin = i + 1
-        
+    if lin == '0':
+        lin = 0 
     return lin
