@@ -22,15 +22,26 @@ def jogada(jogador, tab_oponente):
 
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         
+        #col in ['1','2','3','4','5','6','7','8','9', '10']
+
         
-        col = input('\nEscolha a coluna de ataque (1-10): ')
-        if(re.match('[1-10]{1}$', col)):
+        col = input('\nEscolha a coluna de ataque (1-10): ')  
+
+        if(col in ['1','2','3','4','5','6','7','8','9','10']): 
             col = int(col)
         else:
             print(f'\nValores Invalidos por favor digite novamente!!!')
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
+        # try:
+        #     col = int(col)
+        # except:
+        #     print(f'\nValores Invalidos por favor digite novamente!!!')
+        #     time.sleep(3)
+        #     os.system('cls' if os.name == 'nt' else 'clear')
+        #     continue
+
 
         
         
