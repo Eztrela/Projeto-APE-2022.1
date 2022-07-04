@@ -85,7 +85,10 @@ def inicia_jogo():
         if tam_frota <= 10 and tam_frota >= 1:
             break
         else:
-            print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+            if tam_frota > 10:
+                print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+            else:
+                print('\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
             continue
 
     tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
@@ -102,7 +105,7 @@ def encerra_jogo():
     
     loading_clear()
 
-    print(f'ESPERO QUE TENHA SE DIVERTIDO!\nATÉ A PRÓXIMA!')
+    print(f'ESPERO QUE TENHA SE DIVERTIDO!\n\nATÉ A PRÓXIMA!')
     time.sleep(3)
 
 
@@ -123,25 +126,25 @@ def sorteio_jogador(jog1, jog2):
     lista = [jog1,jog2]
     jogador_sorteado = random.choice(lista)
 
-    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
+    print(f"O jogador sorteado foi '{jogador_sorteado}' e irá jogar primeiro.")
     time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
 
     return jogador_sorteado # Retorna o jogador sorteado
 
 
-def jogada(jogador, tab_oponente):
+def jogada(jogador, tab_jogador, tab_oponente):
     
     while True:
         if(verifica_vitoria(tab_oponente)):
             break
         print(f'\nVez de {jogador}.\n')
 
-        print('(Caso queira visualizar o gabarito do tabuleiro adversário, digite a posição 0x0.)\n')
+        print('(Caso queira visualizar a sua frota distribuída no tabuleiro, digite a posição 0x0.)\n')
 
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
         
-        #col in ['1','2','3','4','5','6','7','8','9', '10']
+        #col in ['0','1','2','3','4','5','6','7','8','9','10']
 
         
         col = input('\nEscolha a coluna de ataque (1-10): ')  
@@ -165,8 +168,8 @@ def jogada(jogador, tab_oponente):
         os.system('cls' if os.name == 'nt' else 'clear')
 
         if(lin == '0' and col == 0):
-            print('Gabarito do tabuleiro adversário:\n')
-            tabuleiro.mostra_gabarito(tab_oponente)
+            print(f'Frota de {jogador}:\n')
+            tabuleiro.mostra_gabarito(tab_jogador)
             time.sleep(3)
             os.system('cls' if os.name == 'nt' else 'clear')
         else:
@@ -206,7 +209,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
 
     while(True):
 
-        funcionalidades.jogada(nome_jogador1, tabuleiro_jogador2)
+        funcionalidades.jogada(nome_jogador1, tabuleiro_jogador1, tabuleiro_jogador2)
         os.system('cls' if os.name == 'nt' else 'clear')
 
         if(verifica_vitoria(tabuleiro_jogador2)):
@@ -224,7 +227,7 @@ def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 
             break
 
 
-        funcionalidades.jogada(nome_jogador2, tabuleiro_jogador1)
+        funcionalidades.jogada(nome_jogador2, tabuleiro_jogador2, tabuleiro_jogador1)
         
 
         if(verifica_vitoria(tabuleiro_jogador1)):
