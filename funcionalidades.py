@@ -2,6 +2,14 @@ import os, time, tabuleiro, animations, funcionalidades, random, re
 
 
 def loading_clear():
+    """
+        Função que limpa o terminal
+        
+        Recebe: nada
+        Retorna: nada
+        
+        Desenvolvido por Pablo Eztrela, comentado por Juan Leite
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
     animations.loading(0.1)
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -10,11 +18,12 @@ def loading_clear():
 def imprime_menu_principal():
     """
         Função para mostrar o menu inicial em tela.
-
+    
         Recebe do usuário os inteiros "1" ou "2"
         (1 para começar um novo jogo e 2 para encerrar o programa)
         e retorna a opção escolhida pelo usuário
-
+        
+        Desenvolvido por Matheus Pereira, comentado por Juan Leite
     """    
     loading_clear()
     
@@ -27,7 +36,15 @@ def imprime_menu_principal():
 
 
 def carrega_menu():
-
+    '''
+        Exibe na tela os caracteres ASCII do jogo  
+        
+        Carrega o menu de opçoes do jogo e decide qual a próxima operação,
+        seja de criar um novo jogo ou encerrar o jogo atual
+        
+        Desenvolvido por Juan Leite, comentado por Matheus Pereira
+        
+    '''
     os.system('cls' if os.name == 'nt' else 'clear')
     print('''
    ######              ##               ###     ###                        ##   ##                              ### 
@@ -40,9 +57,11 @@ def carrega_menu():
 
 ''')
     time.sleep(5)
-
+    
     while(True):
-
+        
+        #Carrega o menu em um loop(enquanto o usuário não falar uma opção válida)
+        
         opcao = funcionalidades.imprime_menu_principal()
 
         if(opcao == 1):
@@ -60,6 +79,17 @@ def carrega_menu():
 
 
 def inicia_jogo():
+    '''
+        Recebe o nome dos jogadores e chama a função que sorteia a ordem
+        de jogadas de cada jogador
+        
+        Logo após, chama a função responsável por criar o tabuleiro de cada jogador
+        
+        No final, temos a ordem de jogadas e o tabuleiro preenchido, com base no
+        valor informado
+        
+        Desenvolvido por Pablo Eztrela, comentado por Juan Leite
+    '''
 
     loading_clear()
 
@@ -102,6 +132,11 @@ def inicia_jogo():
 
 
 def encerra_jogo():
+    '''
+    Função que encerra o Jogo
+    
+    Desenvolvido por Juan Leite, Comentado por Matheus Pereira
+    '''
     
     loading_clear()
 
@@ -114,7 +149,10 @@ def sorteio_jogador(jog1, jog2):
         Função para sortear o jogador que irá iniciar a partida
 
         Recebe como parâmetro os nomes dos jogadores
+        
         Retorna o jogador sorteado para começar
+        
+        Desenvolvido por Matheus, Comentado por Juan Leite
     """
 
     print('\nPrimeiro, vamos sortear quem começa jogando.\n')
@@ -134,7 +172,20 @@ def sorteio_jogador(jog1, jog2):
 
 
 def jogada(jogador, tab_jogador, tab_oponente):
-    
+    '''
+    Função que mostra a situação atual do tabuleiro, caso o usuário queira,
+    como parâmetros:
+        jogador da vez
+        tabuleiro do jogador atual 
+        tabuleiro do oponente
+      
+    Após, realiza a jogada do jogador e verifica se: 
+        acertou a frota inimiga
+        digitou uma posição já atacada 
+        ou acertou a água.
+  
+    Desenvolvido por Pablo Eztrela, Comentado por Matheus Pereira
+    '''
     while True:
         if(verifica_vitoria(tab_oponente)):
             break
@@ -157,11 +208,6 @@ def jogada(jogador, tab_jogador, tab_oponente):
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
         
-        # if(not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin)):
-        #     print(f'\nValores inválidos. Por favor, digite novamente.')
-        #     time.sleep(3)
-        #     os.system('cls' if os.name == 'nt' else 'clear')
-        #     continue
 
         print()
         animations.loading(0.05)
@@ -197,6 +243,13 @@ def jogada(jogador, tab_jogador, tab_oponente):
 
 
 def verifica_entradas_jogada(col,lin):
+    '''
+    Função que verifica se a entrada dos parâmetros da jogada foi correto,
+    retornando False (caso a jogada seja inválida) ou True (caso seja válida), 
+    recebendo como parâmetro a coluna e linha informados pelo jogador
+    
+    Desenvolvido por Juan Leite, comentado por Matheus Pereira
+    '''
     if((col not in ['0','1','2','3','4','5','6','7','8','9','10']) or (not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin))):
         return False
     else:
@@ -204,6 +257,14 @@ def verifica_entradas_jogada(col,lin):
 
 
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
+    '''
+    Função que determina se o jogo deve continuar ou ser encerrado
+    Recebe os parâmetros:
+        nome dos jogadores
+        tabuleiro dos jogadores
+    
+    Desenvolvido por Pablo Eztrela, comentado por Juan Leite
+    '''
 
     print('Hora de jogar!')
 
@@ -250,6 +311,8 @@ def verifica_vitoria(tabuleiro):
         Verifica se ainda existem navios a serem localizados no tabuleiro
 
         Retorna True caso todos os navios tenham sido apontados pelo oponente
+        
+        Desenvolvido por Matheus Pereira, comentado por Juan Leite
     """
 
     # Varre o tabuleiro
