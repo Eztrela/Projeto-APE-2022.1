@@ -82,7 +82,7 @@ def inicia_jogo():
 
     while True:
         tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
-        if tam_frota <= 10:
+        if tam_frota <= 10 and tam_frota >= 1:
             break
         else:
             print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
@@ -90,8 +90,8 @@ def inicia_jogo():
 
     tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1,tam_frota)
     tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2,tam_frota)
-    gabarito_jogador1 = tabuleiro_jogador1
-    gabarito_jogador2 = tabuleiro_jogador2
+    # gabarito_jogador1 = tabuleiro_jogador1
+    # gabarito_jogador2 = tabuleiro_jogador2
 
     loading_clear()
 
@@ -146,7 +146,7 @@ def jogada(jogador, tab_oponente):
         
         col = input('\nEscolha a coluna de ataque (1-10): ')  
 
-        if(col in ['0','1','2','3','4','5','6','7','8','9','10']): 
+        if(verifica_entradas_jogada(col,lin)): 
             col = int(col)
         else:
             print(f'\nValores inválidos. Por favor, digite novamente.')
@@ -154,14 +154,15 @@ def jogada(jogador, tab_oponente):
             os.system('cls' if os.name == 'nt' else 'clear')
             continue
         
-        if(not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin)):
-            print(f'\nValores inválidos. Por favor, digite novamente.')
-            time.sleep(3)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            continue
+        # if(not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin)):
+        #     print(f'\nValores inválidos. Por favor, digite novamente.')
+        #     time.sleep(3)
+        #     os.system('cls' if os.name == 'nt' else 'clear')
+        #     continue
 
         print()
         animations.loading(0.05)
+        os.system('cls' if os.name == 'nt' else 'clear')
 
         if(lin == '0' and col == 0):
             print('Gabarito do tabuleiro adversário:\n')
@@ -190,6 +191,13 @@ def jogada(jogador, tab_oponente):
                 time.sleep(3)
                 os.system('cls' if os.name == 'nt' else 'clear')
                 break
+
+
+def verifica_entradas_jogada(col,lin):
+    if((col not in ['0','1','2','3','4','5','6','7','8','9','10']) or (not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin))):
+        return False
+    else:
+        return True
 
 
 def jogadas(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
