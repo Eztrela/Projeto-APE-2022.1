@@ -149,18 +149,38 @@ def tamanho_frota():
     # Cria um laço infinito
     while True:
 
-        # Cria uma variável que recebe o valor digitado pelo jogador como a quantiadade de navios da frota
-        tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
-        if tam_frota <= 10 and tam_frota >= 1:
-            break
-        else:
-            if tam_frota > 10:
-                print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
-            else:
-                print('\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
-            continue
+        # Cria uma variável que recebe o valor digitado pelo jogador como a quantidade de navios da frota
+        tam_frota = (input(f'De quantos navios será formada a frota de cada jogador? '))
 
-    return tam_frota
+        # Verifica se o valor digitado pelo jogador é um número inteiro e, caso verdadeiro, converte a variável de str para int
+        if tam_frota.isnumeric():
+            tam_frota = int(tam_frota)
+
+            # Verifica se o tamanho da frota está entre 1 e 10 navios e, caso verdadeiro, encerra o laço
+            if tam_frota <= 10 and tam_frota >= 1:
+                break
+
+            # Como o tamanho da frota não está entre 1 e 10 navios, executa outra estrutura condicional
+            else:
+
+                # Verifica se o tamanho da frota é maior que 10 e, caso verdadeiro, imprime uma mensagem que indica que esse valor é inválido
+                if tam_frota > 10:
+                    print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+
+                # Como o valor da frota não é maior que 10, ela só pode ser 0
+                else:
+
+                    # Imprime uma mensagem que indica que esse valor é inválido
+                    print('\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
+
+                # Continua o laço, pois o jogador não digitou um valor válido
+                continue
+
+        # Como o valor digitado pelo jogador não é um número inteiro, imprime uma mensagem que indica que esse valor é inválido    
+        else:
+            print('\nO valor digitado é inválido. Por favor, digite novamente.\n')
+
+    return tam_frota # Retora o tamanho da frota
 
 def inicia_jogo():
     '''   
