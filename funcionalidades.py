@@ -387,7 +387,7 @@ def sorteio_jogador(jogador1, jogador2):
     jogador_sorteado = random.choice(lista)
 
     # Imprime na tela quem foi o jogador sorteado por 3 segundos e depois chama a função que limpa o terminal
-    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
+    print(f"O jogador sorteado foi '{jogador_sorteado}' e irá jogar primeiro.")
     time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
 
