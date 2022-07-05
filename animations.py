@@ -1,8 +1,17 @@
+# Importa as funções das bibliotecas que são utilizadas no código
 from time import sleep
 from sys import stdout
 
 
 def loading(intervalo):
+    """
+    Função que cria a animação de loading e a imprime na tela
+
+    Recebe o tempo de execução da animação
+
+    Desenvolvido por Pablo Eztrela, Comentado por Matheus Pereira
+    
+    """
     print("Loading:")
 
 

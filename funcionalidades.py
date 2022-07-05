@@ -4,7 +4,7 @@ import os, time, tabuleiro, animations, funcionalidades, random, re
 
 def loading_clear():
     """
-        Função que limpa o terminal
+        Função que limpa o terminal após uma animação de loading
        
         Desenvolvido por Pablo Eztrela, comentado por Juan Leite
     """
@@ -15,27 +15,37 @@ def loading_clear():
 
 def imprime_menu_principal():
     """
-        Função para mostrar o menu inicial em tela.
+        Função para mostrar o menu inicial em tela
     
         Recebe do jogador o valor que ele escolhe como opção do menu
         
         Retorna a opção escolhida pelo jogador
         
         Desenvolvido por Matheus Pereira, comentado por Juan Leite
-    """    
+    """   
+
+    # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal 
     loading_clear()
-    
+
+    # Imprime o menu principa e suas opções
     print(f'Escolha entre as opções a seguir:\n')
     print(f'Novo Jogo       -> 1')
     print(f'Encerrar        -> 2')
+
+    # Cria uma variável que recebe o valor digitado pelo jogador como a opção escolhida
     opcao = int(input(f'\nDigite opção desejada: '))
+
+    # Chama a função que limpa o terminal
     os.system('cls' if os.name == 'nt' else 'clear')
-    return opcao
+
+    return opcao # Retorna variável da opção escolhida
 
 
 def titulo_jogo():
     '''
     Função que exibe na tela o título do jogo por 5 segundos
+
+    Desenvolvido por Marcela Kramer, Comentado por Juan Leite
     
     '''
 
@@ -93,7 +103,11 @@ def carrega_menu():
 
             # Imprime a mensagem que indica que a opção digitada foi inválida e pede para o jogador digitar novamente 
             print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
+
+            # Para o programa por 2 segundos
             time.sleep(2)
+
+            # Chama a função que limpa o terminal
             os.system('cls' if os.name == 'nt' else 'clear')
 
             # Continua o laço, pois o jogador deve digitar uma opção válida
@@ -104,15 +118,17 @@ def nome_jogador(num):
     '''
     Função que lê o nome do jogador
 
-    Possui como parâmetro o 'número' do jogador
+    Recebe como parâmetro o 'número' do jogador
 
     Recebe como entrada o nome do jogador
 
     Retorna o nome do jogador
 
+    Desenvolvido por Juan Leite, Comentado por Juan Leite
+
     '''
 
-    # Cria uma variável de nome que recebe a nome digitado pelo jogador
+    # Cria uma variável que recebe o nome digitado pelo jogador
     nome = input(f'Nome do jogador {num}: ')
 
     return nome # Retorna a variável nome
@@ -133,7 +149,7 @@ def tamanho_frota():
     # Cria um laço infinito
     while True:
 
-        # Cria uma variável que recebe o valor digitado pelo usuário como a quantiadade de navios da frota
+        # Cria uma variável que recebe o valor digitado pelo jogador como a quantiadade de navios da frota
         tam_frota = int(input(f'De quantos navios será formada a frota de cada jogador? '))
         if tam_frota <= 10 and tam_frota >= 1:
             break
@@ -153,7 +169,7 @@ def inicia_jogo():
     Desenvolvido por Pablo Eztrela, comentado por Juan Leite
     '''
 
-    # Imprime na tela uma animação de loading e em seguida limpa o terminal
+    # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
 
     # Imprime uma mensagem que indica o início do jogo
@@ -192,7 +208,7 @@ def inicia_jogo():
 
     '''
 
-    # Imprime na tela uma animação de loading e em seguida limpa o terminal
+    # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
     
     # Chama a função jogo
@@ -206,7 +222,7 @@ def encerra_jogo():
     Desenvolvido por Juan Leite, Comentado por Matheus Pereira
     '''
     
-    # Imprime na tela uma animação de loading e em seguida limpa o terminal
+    # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
 
     # Imprime uma mensagem de despedida por 3 segundos antes de encerrar o programa
@@ -222,9 +238,10 @@ def sorteio_jogador(jog1, jog2):
      
      Retorna o jogador sorteado para começar
      
-     Desenvolvido por Matheus, Comentado por Juan Leite
+     Desenvolvido por Matheus Pereira, Comentado por Juan Leite
     """
 
+    # Imprime na tela uma mensagem que indica que o sorteio irá acontecer
     print('\nPrimeiro, vamos sortear quem começa jogando.\n')
 
     
@@ -234,6 +251,7 @@ def sorteio_jogador(jog1, jog2):
     lista = [jog1,jog2]
     jogador_sorteado = random.choice(lista)
 
+    # Imprime na tela quem foi o jogador sorteado por 3 segundos e depois chama a função que limpa o terminal 
     print(f"O jogador sorteado foi '{jogador_sorteado}' e irá jogar primeiro.")
     time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -293,10 +311,14 @@ def escolha_ataque(jogador, tab_oponente):
             # Encerra o laço, pois o jogador digitou entradas válidas
             break
 
-        # Como o jogador não digitou entradas válidas, imprime uma mensagem que indica que ele deve digitar novos valores e, depois, limpa o terminal
+        # Como o jogador não digitou entradas válidas, imprime uma mensagem que indica que ele deve digitar novos valores
         else:
             print(f'\nValores inválidos. Por favor, digite novamente.')
+
+            # Para o programa por 3 segundos
             time.sleep(3)
+
+            # Chama a função que limpa o terminal
             os.system('cls' if os.name == 'nt' else 'clear')
 
             # Continua o laço, pois o jogador deve digitar novas entradas
@@ -330,9 +352,11 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
             # Cria as variáveis de linha e coluna a partir dos valores retornados na função de escolha
             lin = posicao[0]
             col = posicao[1]
-
-            # Limpa o terminal de execução após uma animação de loading 
+ 
+            # Imprime uma linha em branco
             print()
+
+            # Chama a função que limpa o terminal de execução após uma animação de loading
             animations.loading(0.05)
             os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -341,6 +365,8 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
                 print(f'Frota de {jogador}:\n')
                 tabuleiro.mostra_gabarito(tab_jogador)
                 time.sleep(3)
+
+                # Chama a função que limpa o terminal de execução 
                 os.system('cls' if os.name == 'nt' else 'clear')
             else:
 
@@ -358,15 +384,19 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
                     print('FOGO!\nUm navio foi atingido.\n')
                     tabuleiro.mostra_tabuleiro(tab_oponente)
                     time.sleep(3)
+
+                    # Chama a função que limpa o terminal de execução 
                     os.system('cls' if os.name == 'nt' else 'clear')
 
                     # Continua o laço, pois o jogador acertou a jogada
                     continue
 
-                # Verifica se a posição escolhida pelo jogador está preenchida por 'F' ou 'A' e, caso verdadeiro, imprime uma mensagem indicando que o jogador deve escolher outra posição
+                # Verifica se a posição escolhida pelo jogador está preenchida por 'F' ou 'A' e, caso verdadeiro, imprime uma mensagem, por 3 segundos, indicando que o jogador deve escolher outra posição
                 elif(tab_oponente[lin][col] == 'F' or tab_oponente[lin][col] == 'A'):
                     print('Essa posição já foi atacada. Por favor, escolha outra.')
                     time.sleep(3)
+
+                    # Chama a função que limpa o terminal de execução 
                     os.system('cls' if os.name == 'nt' else 'clear')
 
                     # Continua o laço, pois o jogador não realizou a jogada
@@ -380,6 +410,8 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
                     print('ÁGUA!\nNenhum navio foi atingido.\n')
                     tabuleiro.mostra_tabuleiro(tab_oponente)
                     time.sleep(3)
+
+                    # Chama a função que limpa o terminal de execução 
                     os.system('cls' if os.name == 'nt' else 'clear')
 
                     # Encerra o laço, pois o jogador errou a jogada
@@ -411,7 +443,7 @@ def mensagem_final(vencedor, perdedor, tab_vencedor, tab_perdedor):
     # Chama a função que imprime o gabarito do tabuleiro perdedor
     tabuleiro.mostra_gabarito(tab_perdedor)
 
-    # Para o programa por 5 segundos para garantir mais tempo de visualização da mensagem e depois limpa o terminal
+    # Para o programa por 5 segundos para garantir mais tempo de visualização da mensagem e depois chama a função que limpa o terminal de execução
     time.sleep(5)
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -432,6 +464,8 @@ def jogo(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
         # Chama a função que executa o comando de ataque do jogador 1
         funcionalidades.jogada_ataque(nome_jogador1, tabuleiro_jogador1, tabuleiro_jogador2)
+
+        # Chama a função que limpa o terminal de execução
         os.system('cls' if os.name == 'nt' else 'clear')
 
         # Chama a função que verifica se há vitória do jogador 1
@@ -445,6 +479,8 @@ def jogo(nome_jogador1, nome_jogador2,tabuleiro_jogador1, tabuleiro_jogador2 ):
 
         # Chama a função que executa o comando de ataque do jogador 2
         funcionalidades.jogada_ataque(nome_jogador2, tabuleiro_jogador2, tabuleiro_jogador1)
+
+        # Chama a função que limpa o terminal de execução
         os.system('cls' if os.name == 'nt' else 'clear')
 
         # Chama a função que verifica se há vitória do jogador 2
