@@ -325,10 +325,21 @@ def verifica_entradas_jogada(col,lin):
 
     Desenvolvido por Juan Leite, comentado por Matheus Pereira
     '''
+    # Verifica se o valor da coluna não é um número de 0 a 10 ou o da linha não é uma letra de A-J ou 0
     if((col not in ['0','1','2','3','4','5','6','7','8','9','10']) or (not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin))):
+
+        # Caso verdadeiro, retorna False
         return False
+
+    # Verifica se o valor da coluna é igual a 0 e o da linha é uma letra de A-J ou se o valor da coluna é um número de 1 a 10 e o da linha é 0
+    elif (col == '0' and re.match('[abcdefghijABCDEFGHIJ]{1}$', lin)) or (col in ['1','2','3','4','5','6','7','8','9','10'] and lin == '0'):
+
+        # Caso verdadeiro, retorna False
+        return False
+
+    # Como nenhumas das condições anteriores foi atendida, os valores digitados são válidos
     else:
-        return True
+        return True # Retorna True
 
 
 def escolha_ataque(jogador, tab_oponente):
