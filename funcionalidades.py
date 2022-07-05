@@ -140,8 +140,8 @@ def carrega_menu():
             # Imprime a mensagem que indica que a opção digitada foi inválida e pede para o jogador digitar novamente 
             print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
 
-            # Para o programa por 2 segundos
-            time.sleep(2)
+            # Para o programa por 1 segundo
+            time.sleep(1)
 
             # Chama a função que limpa o terminal
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -164,11 +164,46 @@ def nome_jogador(num):
 
     '''
 
-    # Cria uma variável que recebe o nome digitado pelo jogador
-    nome = input(f'Nome do jogador {num}: ')
+    # Cria um laço infinito
+    while True:
+        # Cria uma variável que recebe o nome digitado pelo jogador
+        nome = input(f'Nome do jogador {num}: ').strip()
+
+        # Verifica se a variável recebeu uma string vazia, isto é, o jogador não digitou nenhum nome
+        if nome == '':
+
+            # Imprime uma mensagem indicando que o jogador não digitou nenhum nome
+            print(f'\nVocê não digitou nenhum nome para o jogador {num}. Por favor, informe o nome desse jogador.\n')
+
+            # Para o programa por 2 segundos
+            time.sleep(2)
+
+            # Chama a função que limpa o terminal de execução
+            os.system('cls' if os.name == 'nt' else 'clear') 
+
+            # Continua o laço, pois nenhum nome foi informado
+            continue
+
+        # Como o jogador informou o nome, encerra o laço
+        else:
+            break 
 
     return nome # Retorna a variável nome
 
+def exibe_jogadores(jogador1, jogador2):
+    '''
+    Função que exibe quem são os jogadores
+
+    Recebe o nome dos jogadores
+
+    Desenvolvido por Juan Leite, Comentado por Marcela Kramer 
+    
+    '''
+
+    # Imprime quem são os jogadores por 3 segundos
+    print('\nVoilà! Temos nossos jogadores:')
+    print(f'\nO jogador 1 é {jogador1} e o jogador 2 é {jogador2}.')
+    time.sleep(3)
 
 def tamanho_frota():
     """
@@ -181,6 +216,8 @@ def tamanho_frota():
     Desenvolvido por Pablo Eztrela, Comentado por Pablo Eztrela
     
     """
+    # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
+    loading_clear()
 
     # Cria um laço infinito
     while True:
@@ -203,11 +240,23 @@ def tamanho_frota():
                 if tam_frota > 10:
                     print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
 
+                    # Para o programa por 2 segundos
+                    time.sleep(2)
+
+                    # Chama a função que limpa o terminal
+                    os.system('cls' if os.name == 'nt' else 'clear')
+
                 # Como o valor da frota não é maior que 10, ela só pode ser 0
                 else:
 
                     # Imprime uma mensagem que indica que esse valor é inválido
                     print('\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
+
+                    # Para o programa por 2 segundos
+                    time.sleep(2)
+
+                    # Chama a função que limpa o terminal
+                    os.system('cls' if os.name == 'nt' else 'clear')
 
                 # Continua o laço, pois o jogador não digitou um valor válido
                 continue
@@ -215,6 +264,12 @@ def tamanho_frota():
         # Como o valor digitado pelo jogador não é um número inteiro, imprime uma mensagem que indica que esse valor é inválido    
         else:
             print('\nO valor digitado é inválido. Por favor, digite novamente.\n')
+
+            # Para o programa por 2 segundos
+            time.sleep(2)
+
+            # Chama a função que limpa o terminal
+            os.system('cls' if os.name == 'nt' else 'clear')
 
     return tam_frota # Retora o tamanho da frota
 
@@ -233,7 +288,13 @@ def inicia_jogo():
 
     # Cria variáveis que recebem os nomes retornados da função que os lê
     nome_jogador1 = nome_jogador(1) 
-    nome_jogador2 = nome_jogador(2) 
+    nome_jogador2 = nome_jogador(2)
+
+    # Para o programa por 0.5 segundo
+    time.sleep(0.5)
+
+    # Chama a função que exibe quem são os jogadores
+    exibe_jogadores(nome_jogador1, nome_jogador2)
 
     # Cria uma variável auxiliar 
     aux = ''
@@ -297,11 +358,16 @@ def sorteio_jogador(jog1, jog2):
      Desenvolvido por Matheus Pereira, Comentado por Juan Leite
     """
 
-    # Imprime na tela uma mensagem que indica que o sorteio irá acontecer
-    print('\nPrimeiro, vamos sortear quem começa jogando.\n')
+    # Chama a função que limpa o terminal de execução
+    os.system('cls' if os.name == 'nt' else 'clear')
 
+    # Imprime na tela uma mensagem que indica que o sorteio irá acontecer
+    print('Perfeito! Agora, vamos sortear quem começa jogando.\n')
+
+    # Para o programa por 1 segundo
+    time.sleep(1)
     
-    animations.loading(0.1) # Exibe a animação em tela
+    loading_clear() # Exibe uma animação de loading na tela e depois chama a função que limpa o terminal
 
     # Coloca os jogadores numa lista e sorteia um dos dois, atribuindo o resultado numa variável
     lista = [jog1,jog2]
@@ -357,7 +423,7 @@ def escolha_ataque(jogador, tab_oponente):
     while True:
 
         # Imprime o jogador que deve realizar a jogada
-        print(f'\nVez de {jogador}.\n')
+        print(f'Vez de {jogador}.\n')
 
         # Imprime o tabuleiro do oponente em seu estado atual para que o jogador possa ver as posições já atacadas
         tabuleiro.mostra_tabuleiro(tab_oponente)
