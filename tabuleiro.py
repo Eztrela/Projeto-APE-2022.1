@@ -6,6 +6,8 @@ def cria_tabuleiro():
     """
     Função que cria o tabuleiro e o preenche inicialmente
 
+    Desenvolvido por Marcela Kramer, Comentado por Juan Leite
+
     """
 
     #Cria a matriz que funcionará como tabuleiro
@@ -37,6 +39,8 @@ def mostra_tabuleiro(tab):
     """
     Função que exibe cada elemento do tabuleiro de maneira formatada, porém substituindo, no print, as células 'N', que indicam os navios, por '.'
 
+    Desenvolvido por Matheus Pereira, Comentado por Juan Leite
+
     """
 
     # Cria uma variável que recebe a string '.' 
@@ -64,6 +68,8 @@ def mostra_gabarito(tab):
     """
     Função que exibe cada elemento do tabuleiro de maneira formatada e no seu verdadeiro estado atual
 
+    Desenvolvido por Pablo Eztrela, Comentado por Juan Leite
+
     """
 
     # Percorre todo o tabuleiro
@@ -88,6 +94,8 @@ def preenche_tabuleiro(tab, num_navios):
     Recebe o tabuleiro a ser preenchido e a quantidade de navios que ele deve possuir
 
     Retorna o tabuleiro preenchido com esse determinado número de navios
+
+    Desenvolvido por Marcela Kramer, Comentado por Matheus Pereira
 
     """
 
@@ -161,19 +169,20 @@ def transforma_linha(lin):
 
     Retorna um valor inteiro que corresponde à posição dessa letra
 
+    Desenvolvido por Juan Leite, Comentado por Marcela Kramer
+
     """
     # Cria um vetor com letras de 'A' a 'J'
     letras = ['A','B','C','D','E','F','G','H','I','J']
-
+ 
     # Percorre todas as posições desse vetor e verifica se alguma delas é igual a variável 'lin', que foi o parâmetro recebido pela função
-
-    # Caso True, 'lin' recebe o valor do índice da posição no vetor + 1 
-
-    # Caso False, é verificado ser 'lin' é igual a '0' e, se verdadeiro, 'lin' recebe o valor inteiro 0
-
     for i in range(10):
         if letras[i] == lin:
+
+                # Caso True, 'lin' recebe o valor do índice da posição no vetor + 1 
                 lin = i + 1
+
+        # Caso False, é verificado ser 'lin' é igual a '0' e, se verdadeiro, 'lin' recebe o valor inteiro 0        
         elif lin == '0':
             lin = 0 
             
