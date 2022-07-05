@@ -27,13 +27,49 @@ def imprime_menu_principal():
     # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal 
     loading_clear()
 
-    # Imprime o menu principa e suas opções
-    print(f'Escolha entre as opções a seguir:\n')
-    print(f'Novo Jogo       -> 1')
-    print(f'Encerrar        -> 2')
+    # Cria um laço infinito
+    while True:
+        # Imprime o menu principa e suas opções
+        print(f'Escolha entre as opções a seguir:\n')
+        print(f'Novo Jogo       -> 1')
+        print(f'Encerrar        -> 2')
 
-    # Cria uma variável que recebe o valor digitado pelo jogador como a opção escolhida
-    opcao = int(input(f'\nDigite opção desejada: '))
+        # Cria uma variável que recebe o valor digitado pelo jogador como a opção escolhida
+        opcao = input(f'\nDigite opção desejada: ')
+
+        # Verifica se o valor digitado pelo jogador é um número inteiro e, caso verdadeiro, converte a variável de str para int
+        if opcao.isnumeric():
+            opcao = int(opcao)
+
+            # Verifica se a opção digitada pelo jogador foi diferente de 1 e 2 e, caso verdadeiro, imprime uma mensagem que indica que esse valor é inválido
+            if opcao != 1 and opcao != 2:
+                print('\nEssa opção não é válida. Por favor, digite novamente.\n')
+
+                # Para a execução do programa por 3 segundos
+                time.sleep(3)
+
+                # Chama a função que limpa o terminal de execução
+                os.system('cls' if os.name == 'nt' else 'clear')
+
+                # Continua o laço, pois a opção digitada pelo jogador foi inválida
+                continue
+
+            # Como a opção digitada pelo jogador foi 1 ou 2, encerra o laço
+            else:
+                break
+        
+        # Como a opção digitada pelo jogador não foi um número inteiro, imprime uma mensagem que indica que esse valor é inválido
+        else:
+            print('\nEssa opção não é válida. Por favor, digite novamente.\n')
+
+            # Para a execução do programa por 3 segundos
+            time.sleep(3)
+
+            # Chama a função que limpa o terminal de execução
+            os.system('cls' if os.name == 'nt' else 'clear')
+
+            # Continua o laço, pois a opção digitada pelo jogador foi inválida
+            continue
 
     # Chama a função que limpa o terminal
     os.system('cls' if os.name == 'nt' else 'clear')
