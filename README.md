@@ -43,10 +43,10 @@
 
 <a id=desenvolvedores></a>
 ## :raising_hand: Desenvolvedores
-* #### Juan Leite Farias
-* #### Marcela Barreto de Oliveira Kramer
-* #### Matheus Pereira de Sousa
-* #### Pablo Marques de Lima Estrela
+*  Juan Leite Farias
+*  Marcela Barreto de Oliveira Kramer
+*  Matheus Pereira de Sousa
+*  Pablo Marques de Lima Estrela
 
 
 
