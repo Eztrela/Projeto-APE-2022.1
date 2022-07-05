@@ -257,11 +257,11 @@ def verifica_entradas_jogada(col,lin):
         return True
 
 
-def escolha_ataque(jogador):
+def escolha_ataque(jogador, tab_oponente):
     '''
     Função que permite ao jogador escolher a posição que ele quer atacar no tabuleiro adversário
       
-    Recebe o nome do jogador 
+    Recebe o nome do jogador e o tabuleiro adversário
 
     Retorna a linha e a coluna escolhida dentro de uma tupla
   
@@ -274,8 +274,11 @@ def escolha_ataque(jogador):
         # Imprime o jogador que deve realizar a jogada
         print(f'\nVez de {jogador}.\n')
 
+        # Imprime o tabuleiro do oponente em seu estado atual para que o jogador possa ver as posições já atacadas
+        tabuleiro.mostra_tabuleiro(tab_oponente)
+
         # Imprime a opção do jogador visualizar seu próprio tabuleiro
-        print('(Caso queira visualizar a sua frota distribuída no tabuleiro, digite a posição 0x0.)\n')
+        print('\n(Caso queira visualizar a sua frota distribuída no tabuleiro, digite a posição 0x0.)\n')
 
         # Cria uma variável que recebe o valor str digitado pelo jogador para a posição da linha do ataque
         lin = input('Escolha a linha de ataque (A-J): ').upper().strip()
@@ -322,7 +325,7 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
         else:
 
             # Chama a função de escolha de ataque para definir a linha e a coluna que devem ser atacadas
-            posicao = escolha_ataque(jogador)
+            posicao = escolha_ataque(jogador, tab_oponente)
 
             # Cria as variáveis de linha e coluna a partir dos valores retornados na função de escolha
             lin = posicao[0]
