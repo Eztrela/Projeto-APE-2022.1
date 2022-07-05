@@ -23,7 +23,7 @@ def imprime_menu_principal():
     """
         Função para mostrar o menu inicial em tela
 
-        Recebe do jogador o valor que ele escolhe como opção do menu
+        Recebe como entrada do jogador o valor que ele escolhe como opção do menu
 
         Retorna a opção escolhida pelo jogador
 
@@ -35,6 +35,7 @@ def imprime_menu_principal():
 
     # Cria um laço infinito
     while True:
+
         # Imprime o menu principa e suas opções
         print(f'Escolha entre as opções a seguir:\n')
         print(f'Novo Jogo       -> 1')
@@ -84,12 +85,12 @@ def imprime_menu_principal():
 
 
 def titulo_jogo():
-    '''
+    """
     Função que exibe na tela o título do jogo por 5 segundos
 
     Desenvolvido por Marcela Kramer, Comentado por Juan Leite
 
-    '''
+    """
 
     # Chama a função que limpa o terminal antes de exibir o título
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -111,13 +112,12 @@ def titulo_jogo():
 
 
 def carrega_menu():
-    '''
-    Função que carrega o menu de opçoes do jogo e decide qual a próxima operação,
-    seja de criar um novo jogo ou encerrar o jogo atual
+    """
+    Função que carrega o menu de opções do jogo e decide qual a próxima operação, seja de criar um novo jogo ou encerrar o jogo atual
 
     Desenvolvido por Juan Leite, comentado por Matheus Pereira
 
-    '''
+    """
 
     # Chama a função que exibe o título do jogo
     titulo_jogo()
@@ -156,7 +156,7 @@ def carrega_menu():
 
 
 def nome_jogador(num):
-    '''
+    """
     Função que lê o nome do jogador
 
     Recebe como parâmetro o 'número' do jogador
@@ -167,10 +167,11 @@ def nome_jogador(num):
 
     Desenvolvido por Juan Leite, Comentado por Juan Leite
 
-    '''
+    """
 
     # Cria um laço infinito
     while True:
+
         # Cria uma variável que recebe o nome digitado pelo jogador
         nome = input(f'Nome do jogador {num}: ').strip()
 
@@ -198,14 +199,14 @@ def nome_jogador(num):
 
 
 def exibe_jogadores(jogador1, jogador2):
-    '''
+    """
     Função que exibe quem são os jogadores
 
     Recebe o nome dos jogadores
 
     Desenvolvido por Juan Leite, Comentado por Marcela Kramer 
 
-    '''
+    """
 
     # Imprime quem são os jogadores por 3 segundos
     print('\nVoilà! Temos nossos jogadores:')
@@ -221,7 +222,7 @@ def tamanho_frota():
 
     Retorna esse mesmo valor
 
-    Desenvolvido por Pablo Eztrela, Comentado por Pablo Eztrela
+    Desenvolvido por Marcela Kramer, Comentado por Pablo Eztrela
 
     """
     # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
@@ -231,8 +232,7 @@ def tamanho_frota():
     while True:
 
         # Cria uma variável que recebe o valor digitado pelo jogador como a quantidade de navios da frota
-        tam_frota = (
-            input(f'De quantos navios será formada a frota de cada jogador? '))
+        tam_frota = (input(f'De quantos navios será formada a frota de cada jogador? '))
 
         # Verifica se o valor digitado pelo jogador é um número inteiro e, caso verdadeiro, converte a variável de str para int
         if tam_frota.isnumeric():
@@ -247,8 +247,7 @@ def tamanho_frota():
 
                 # Verifica se o tamanho da frota é maior que 10 e, caso verdadeiro, imprime uma mensagem que indica que esse valor é inválido
                 if tam_frota > 10:
-                    print(
-                        '\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
+                    print('\nO tamanho da frota não pode exceder 10 navios. Por favor, digite novamente.\n')
 
                     # Para o programa por 2 segundos
                     time.sleep(2)
@@ -260,8 +259,7 @@ def tamanho_frota():
                 else:
 
                     # Imprime uma mensagem que indica que esse valor é inválido
-                    print(
-                        '\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
+                    print('\nO tamanho da frota não pode ser nulo. Por favor, digite novamente.\n')
 
                     # Para o programa por 2 segundos
                     time.sleep(2)
@@ -286,11 +284,12 @@ def tamanho_frota():
 
 
 def inicia_jogo():
-    '''   
+    """   
     Função que inicia o jogo, lendo as informações necessárias para sua continuidade
 
-    Desenvolvido por Pablo Eztrela, comentado por Juan Leite
-    '''
+    Desenvolvido por Matheus Pereira, comentado por Juan Leite
+
+    """
 
     # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
@@ -312,8 +311,7 @@ def inicia_jogo():
     aux = ''
 
     # Cria uma variável que recebe o nome retornado da função que sorteia um jogador para começar jogando
-    jogador_sorteado = funcionalidades.sorteio_jogador(
-        nome_jogador1, nome_jogador2)
+    jogador_sorteado = funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
 
     # Verifica se o jogador sorteado foi o jogador 2 e, caso verdadeiro, o transforma em jogador 1 por meio de uma variável auxiliar
     if(jogador_sorteado == nome_jogador2):
@@ -329,16 +327,14 @@ def inicia_jogo():
     tam_frota = tamanho_frota()
 
     # Preenche o tabuleiro dos jogadores com a devida quantidade de navios a partir da função que realiza essa ação
-    tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(
-        tabuleiro_jogador1, tam_frota)
-    tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(
-        tabuleiro_jogador2, tam_frota)
+    tabuleiro_jogador1 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador1, tam_frota)
+    tabuleiro_jogador2 = tabuleiro.preenche_tabuleiro(tabuleiro_jogador2, tam_frota)
 
-    ''' 
+    """ 
     gabarito_jogador1 = tabuleiro_jogador1
     gabarito_jogador2 = tabuleiro_jogador2
 
-    '''
+    """
 
     # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
@@ -348,11 +344,12 @@ def inicia_jogo():
 
 
 def encerra_jogo():
-    '''
+    """
     Função que encerra o Jogo
 
     Desenvolvido por Juan Leite, Comentado por Matheus Pereira
-    '''
+    
+    """
 
     # Chama a função que imprime na tela uma animação de loading e em seguida limpa o terminal
     loading_clear()
@@ -362,7 +359,7 @@ def encerra_jogo():
     time.sleep(3)
 
 
-def sorteio_jogador(jog1, jog2):
+def sorteio_jogador(jogador1, jogador2):
     """
      Função para sortear o jogador que irá iniciar a partida
 
@@ -371,6 +368,7 @@ def sorteio_jogador(jog1, jog2):
      Retorna o jogador sorteado para começar
 
      Desenvolvido por Matheus Pereira, Comentado por Juan Leite
+
     """
 
     # Chama a função que limpa o terminal de execução
@@ -380,16 +378,16 @@ def sorteio_jogador(jog1, jog2):
     print('Perfeito! Agora, vamos sortear quem começa jogando.\n')
 
     # Para o programa por 1 segundo
-    time.sleep(1)
+    time.sleep(2)
 
     loading_clear()  # Exibe uma animação de loading na tela e depois chama a função que limpa o terminal
 
     # Coloca os jogadores numa lista e sorteia um dos dois, atribuindo o resultado numa variável
-    lista = [jog1, jog2]
+    lista = [jogador1, jogador2]
     jogador_sorteado = random.choice(lista)
 
     # Imprime na tela quem foi o jogador sorteado por 3 segundos e depois chama a função que limpa o terminal
-    print(f"O jogador sorteado foi '{jogador_sorteado}' e irá jogar primeiro.")
+    print(f'O jogador sorteado foi {jogador_sorteado} e irá jogar primeiro.')
     time.sleep(3)
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -397,15 +395,17 @@ def sorteio_jogador(jog1, jog2):
 
 
 def verifica_entradas_jogada(col, lin):
-    '''
+    """
     Função que verifica se a entrada dos valores da jogada foi correta
 
     Recebe a coluna e a linha informadas pelo jogador
 
     Retorna True(caso a jogada seja válida) ou False(caso a jogada seja inválida)
 
-    Desenvolvido por Juan Leite, comentado por Matheus Pereira
-    '''
+    Desenvolvido por Pablo Eztrela, comentado por Matheus Pereira
+
+    """
+
     # Verifica se o valor da coluna não é um número de 0 a 10 ou o da linha não é uma letra de A-J ou 0
     if((col not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']) or (not re.match('[0abcdefghijABCDEFGHIJ]{1}$', lin))):
 
@@ -424,7 +424,7 @@ def verifica_entradas_jogada(col, lin):
 
 
 def escolha_ataque(jogador, tab_oponente):
-    '''
+    """
     Função que permite ao jogador escolher a posição que ele quer atacar no tabuleiro adversário
 
     Recebe o nome do jogador e o tabuleiro adversário
@@ -432,7 +432,8 @@ def escolha_ataque(jogador, tab_oponente):
     Retorna a linha e a coluna escolhida dentro de uma tupla
 
     Desenvolvido por Marcela Kramer, Comentado por Matheus Pereira
-    '''
+
+    """
 
     # Cria um laço infinito
     while True:
@@ -476,19 +477,21 @@ def escolha_ataque(jogador, tab_oponente):
 
 
 def jogada_ataque(jogador, tab_jogador, tab_oponente):
-    '''
+    """
     Função que executa o comando de ataque de fato
 
     Recebe o nome do jogador que realiza o ataque, seu próprio tabuleiro e o tabuleiro adversário
 
+    Retorna True, caso todos os navios sejam derrubados, ou False, caso ainda existam navios na frota adversária
+
     Desenvolvido por Pablo Eztrela, Comentado por Marcela Kramer
 
-    '''
+    """
 
     # Cria um laço infinito
     while True:
 
-        # Verifica se o jogador derrubou todos os navios adversários
+        # Verifica se o jogador derrubou todos os navios adversários e, caso verdadeiro, retorna True
         if verifica_vitoria(tab_oponente):
             return True
         else:
@@ -561,85 +564,83 @@ def jogada_ataque(jogador, tab_jogador, tab_oponente):
                     # Chama a função que limpa o terminal de execução
                     os.system('cls' if os.name == 'nt' else 'clear')
 
-                    # Encerra o laço, pois o jogador errou a jogada
+                    # Retorna False, pois o jogador errou a jogada
                     return False
 
 
 def mensagem_final(vencedor, perdedor, tab_vencedor, tab_perdedor):
-    '''
+    """
     Função que exibe na tela a mensagem final do jogo, declarando o vencedor e imprimindo os tabuleiros em seu estado final
 
     Recebe os nomes do vencedor e do perdedor do jogo, bem como seus tabuleiros
 
     Desenvolvido por Marcela Kramer, Comentado por Pablo Eztrela
 
-    '''
+    """
+
     # Imprime uma mensagem que indica o jogador vencedor e outra que o parabeniza
     print(f'EITA! {vencedor} afundou todos os navios de {perdedor}.')
     print(f'\nPARABÉNS, {vencedor}! VOCÊ GANHOU O JOGO.')
 
-    # Imprime o tabuleiro do jogador vencedor após o término do jogo
+    # Imprime a mensagem que referencia o tabuleiro do jogador vencedor após o término do jogo
     print(f'\nTabuleiro de {vencedor} após o término do jogo:\n')
 
     # Chama a função que imprime o gabarito do tabuleiro vencedor
     tabuleiro.mostra_gabarito(tab_vencedor)
 
-    # Imprime o tabuleiro do jogador perdedor após o término do jogo
+    # Imprime a mensagem que referencia o tabuleiro do jogador perdedor após o término do jogo
     print(f'\nTabuleiro de {perdedor} após o término do jogo:\n')
 
     # Chama a função que imprime o gabarito do tabuleiro perdedor
     tabuleiro.mostra_gabarito(tab_perdedor)
 
-    # Para o programa por 5 segundos para garantir mais tempo de visualização da mensagem e depois chama a função que limpa o terminal de execução
-    time.sleep(5)
+    # Para o programa por 10 segundos para garantir mais tempo de visualização da mensagem e depois chama a função que limpa o terminal de execução
+    time.sleep(10)
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def jogo(nome_jogador1, nome_jogador2, tabuleiro_jogador1, tabuleiro_jogador2):
-    '''
+    """
     Função que executa as jogadas de ataque dos dois jogadores em série
 
     Recebe o nome dos jogadores e seus tabuleiros
 
     Desenvolvido por Pablo Eztrela, comentado por Juan Leite
-    '''
+    
+    """
 
     # Imprime uma mensagem que indica o início da série de ataques
-    print('Hora de jogar!')
+    print('Hora de jogar!\n')
 
     # Cria um laço infinito
     while(True):
 
-        # Chama a função que executa o comando de ataque do jogador 1
-        dizimado = jogada_ataque(
-            nome_jogador1, tabuleiro_jogador1, tabuleiro_jogador2)
+        # Cria uma variável que recebe o valor retornado da função de jogada
+        dizimado = jogada_ataque(nome_jogador1, tabuleiro_jogador1, tabuleiro_jogador2)
 
         # Chama a função que limpa o terminal de execução
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        # Chama a função que verifica se há vitória do jogador 1
+        # Verifica se a variável 'dizimado' possui o valor True para o jogador 1
         if(dizimado):
 
             # Chama a função que imprime a mensagem final do jogo
-            mensagem_final(nome_jogador1, nome_jogador2,
-                           tabuleiro_jogador1, tabuleiro_jogador2)
+            mensagem_final(nome_jogador1, nome_jogador2, tabuleiro_jogador1, tabuleiro_jogador2)
 
             # Encerra o laço, pois o jogador 1 venceu o jogo
             break
 
         # Chama a função que executa o comando de ataque do jogador 2
-        dizimado = jogada_ataque(
-            nome_jogador2, tabuleiro_jogador2, tabuleiro_jogador1)
+        dizimado = jogada_ataque(nome_jogador2, tabuleiro_jogador2, tabuleiro_jogador1)
 
         # Chama a função que limpa o terminal de execução
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        # Chama a função que verifica se há vitória do jogador 2
+        # Verifica se a variável 'dizimado' possui o valor True para o jogador 2
         if(dizimado):
 
             # Chama a função que imprime a mensagem final do jogo
-            mensagem_final(nome_jogador2, nome_jogador1,
-                           tabuleiro_jogador2, tabuleiro_jogador1)
+            mensagem_final(nome_jogador2, nome_jogador1, tabuleiro_jogador2, tabuleiro_jogador1)
 
             # Encerra o laço, pois o jogador 2 venceu o jogo
             break
@@ -654,6 +655,7 @@ def verifica_vitoria(tabuleiro):
      Retorna True(caso todos os navios tenham sido apontados pelo oponente) ou False(caso ainda existam navios a serem atacados)
 
      Desenvolvido por Matheus Pereira, comentado por Juan Leite
+
     """
 
     # Varre o tabuleiro

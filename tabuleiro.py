@@ -2,7 +2,6 @@
 from random import randint
 
 def cria_tabuleiro():
-
     """
     Função que cria o tabuleiro e o preenche inicialmente
 
@@ -35,7 +34,6 @@ def cria_tabuleiro():
 
 
 def mostra_tabuleiro(tab):
-
     """
     Função que exibe cada elemento do tabuleiro de maneira formatada, porém substituindo, no print, as células 'N', que indicam os navios, por '.'
 
@@ -64,7 +62,6 @@ def mostra_tabuleiro(tab):
             print()
 
 def mostra_gabarito(tab):
-
     """
     Função que exibe cada elemento do tabuleiro de maneira formatada e no seu verdadeiro estado atual
 
@@ -87,7 +84,6 @@ def mostra_gabarito(tab):
 
 
 def preenche_tabuleiro(tab, num_navios):
-
     """
     Função que preenche o tabuleiro de maneira aleatória com os navios indicados pela letra 'N', sempre verificando se já existem navios ao redor da posição a ser preeenchida
 
@@ -161,7 +157,6 @@ def preenche_tabuleiro(tab, num_navios):
 
 
 def transforma_linha(lin):
-
     """
     Função que transforma uma letra(str) em um inteiro que corresponderá a uma posição de linha na matriz
 
@@ -169,7 +164,7 @@ def transforma_linha(lin):
 
     Retorna um valor inteiro que corresponde à posição dessa letra
 
-    Desenvolvido por Juan Leite, Comentado por Marcela Kramer
+    Desenvolvido por Matheus Pereira, Comentado por Marcela Kramer
 
     """
     # Cria um vetor com letras de 'A' a 'J'
