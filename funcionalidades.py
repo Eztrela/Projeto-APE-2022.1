@@ -52,8 +52,8 @@ def imprime_menu_principal():
             if opcao != 1 and opcao != 2:
                 print('\nEssa opção não é válida. Por favor, digite novamente.\n')
 
-                # Para a execução do programa por 3 segundos
-                time.sleep(3)
+                # Para a execução do programa por 1 segundo
+                time.sleep(1)
 
                 # Chama a função que limpa o terminal de execução
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -69,8 +69,8 @@ def imprime_menu_principal():
         else:
             print('\nEssa opção não é válida. Por favor, digite novamente.\n')
 
-            # Para a execução do programa por 3 segundos
-            time.sleep(3)
+            # Para a execução do programa por 1 segundo
+            time.sleep(1)
 
             # Chama a função que limpa o terminal de execução
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -107,8 +107,8 @@ def titulo_jogo():
 
 ''')
 
-    # Chama a função que para o programa por 5 segundos
-    time.sleep(5)
+    # Chama a função que para o programa por 3 segundos
+    time.sleep(3)
 
 
 def carrega_menu():
@@ -138,21 +138,6 @@ def carrega_menu():
 
             # Encerra o laço, pois o jogo foi encerrado
             break
-
-        # Como a opção digitada não foi 1 ou 2, ela é inválida
-        else:
-
-            # Imprime a mensagem que indica que a opção digitada foi inválida e pede para o jogador digitar novamente
-            print(f'A opção {opcao} é inválida. Por favor, digite novamente.')
-
-            # Para o programa por 1 segundo
-            time.sleep(1)
-
-            # Chama a função que limpa o terminal
-            os.system('cls' if os.name == 'nt' else 'clear')
-
-            # Continua o laço, pois o jogador deve digitar uma opção válida
-            continue
 
 
 def nome_jogador(num):
