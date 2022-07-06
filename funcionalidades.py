@@ -340,7 +340,7 @@ def encerra_jogo():
     loading_clear()
 
     # Imprime uma mensagem de despedida por 3 segundos antes de encerrar o programa
-    print(f'ESPERO QUE TENHA SE DIVERTIDO!\n\nATÉ A PRÓXIMA!')
+    print(f'Fim da BATALHA NAVAL!\n\nEspero que tenha se divertido.\n\nAté a próxima!')
     time.sleep(3)
 
 
