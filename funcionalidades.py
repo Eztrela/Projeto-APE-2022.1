@@ -36,7 +36,7 @@ def imprime_menu_principal():
     # Cria um laço infinito
     while True:
 
-        # Imprime o menu principa e suas opções
+        # Imprime o menu principal e suas opções
         print(f'Escolha entre as opções a seguir:\n')
         print(f'Novo Jogo       -> 1')
         print(f'Encerrar        -> 2')
@@ -296,7 +296,7 @@ def inicia_jogo():
     aux = ''
 
     # Cria uma variável que recebe o nome retornado da função que sorteia um jogador para começar jogando
-    jogador_sorteado = funcionalidades.sorteio_jogador(nome_jogador1, nome_jogador2)
+    jogador_sorteado = sorteio_jogador(nome_jogador1, nome_jogador2)
 
     # Verifica se o jogador sorteado foi o jogador 2 e, caso verdadeiro, o transforma em jogador 1 por meio de uma variável auxiliar
     if(jogador_sorteado == nome_jogador2):
