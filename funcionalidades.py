@@ -194,7 +194,7 @@ def exibe_jogadores(jogador1, jogador2):
     """
 
     # Imprime quem são os jogadores por 3 segundos
-    print('\nVoilà! Temos nossos jogadores:')
+    print('\n\nVoilà! Temos nossos jogadores:')
     print(f'\nO jogador 1 é {jogador1} e o jogador 2 é {jogador2}.')
     time.sleep(3)
 
