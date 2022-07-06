@@ -601,7 +601,7 @@ def mensagem_final(vencedor, perdedor, tab_vencedor, tab_perdedor):
 
 def jogo(nome_jogador1, nome_jogador2, tabuleiro_jogador1, tabuleiro_jogador2):
     """
-    Função que executa as jogadas de ataque dos dois jogadores em série
+    Função que executa as jogadas de ataque dos dois jogadores em série até que um deles vença o jogo
 
     Recebe o nome dos jogadores e seus tabuleiros
 
