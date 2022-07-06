@@ -1,4 +1,3 @@
-<<<<<<< develop
 # Projeto Final APE - Batalha Naval :ship:
 #### O projeto a seguir foi designado na disciplina de Algoritmo e Programação Estruturada do curso Tecnologia em Sistemas para Internet, semestre 2022.1 do Instituto Federal da Paraíba (IFPB), e tem como objetivo o desenvolvimento de um jogo de batalha naval que segue regras e requisitos pré-estabelecidos.
 
